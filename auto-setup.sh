@@ -50,6 +50,8 @@ setup_user() {
     # Setup docker rootless acces.
     sudo groupadd docker
     sudo usermod -aG docker $USER_NAME
+    # Setup default shell for the new user.
+    sudo usermod --shell /bin/bash $USER_NAME
 
     # Display the username,password, and host.
     echo "User name: $USER_NAME"
