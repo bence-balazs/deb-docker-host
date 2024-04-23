@@ -48,7 +48,9 @@ setup_user() {
     fi
 
     # Setup docker rootless acces.
-    sudo groupadd docker
+    if [ ! "$(cat /etc/passwd | grep docker)" ]; then
+        sudo groupadd docker
+    fi
     sudo usermod -aG docker $USER_NAME
     # Setup default shell for the new user.
     sudo usermod --shell /bin/bash $USER_NAME
