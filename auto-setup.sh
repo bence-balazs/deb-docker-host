@@ -8,7 +8,6 @@
 # Copy over root ssh pub key to the new user
 set -euo pipefail;
 
-
 # Enforce to run with sudo or root. exit 1
 if [ "$(id -u)" -ne 0 ]; then
     echo "Must run with super user privileges."
@@ -56,8 +55,6 @@ setup_user() {
     echo "User name: $USER_NAME"
     echo "Password:  $USER_PASSWORD"
     echo "Host name: $(hostname)"
-
-    exit 0
 }
 
 setup_docker() {
@@ -82,8 +79,6 @@ setup_docker() {
 
     # Install docker from repository.
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-    
-    exit 0
 }
 
 if [ "$1" = 2 ]; then
@@ -103,3 +98,4 @@ if [ "$1" = 4 ]; then
     setup_user $1
 fi
 
+exit 0
