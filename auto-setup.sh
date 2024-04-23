@@ -52,6 +52,14 @@ setup_user() {
         sudo groupadd docker
     fi
     sudo usermod -aG docker $USER_NAME
+
+    # Copy over the ssh pub key from root to the new user.
+    sudo mkdir -p /home/$USER_NAME/.ssh
+    sudo cat /root/.ssh/authorized_keys > /home/$USER_NAME/.ssh/authorized_keys
+    sudo chown -R $USER_NAME: /home/$USER_NAME/.ssh
+    sudo chmod -R 0755 /home/$USER_NAME/.ssh
+    sudo chmod 0600 /home/$USER_NAME/.ssh/authorized_keys
+    
     # Setup default shell for the new user.
     sudo usermod --shell /bin/bash $USER_NAME
 
