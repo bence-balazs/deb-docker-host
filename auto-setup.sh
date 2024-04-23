@@ -89,13 +89,13 @@ fi
 if [ "$1" = 3 ]; then
     echo "Setting up non root user..."
     
-    setup_user $1
+    setup_user $2
 fi
 if [ "$1" = 4 ]; then
     echo "Setting up rootless docker and non root user..."
     
     setup_docker
-    setup_user $1
+    setup_user $2
 fi
 
 exit 0
